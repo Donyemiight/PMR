@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PMR — Prediction Market Research · Pharos Agent Center Skill</title>
+  <style>
+    :root {
+      --bg: #0d0f1a;
+      --card: #161929;
+      --border: #2a2f45;
+      --accent: #7c6af7;
+      --accent2: #4fd1c5;
+      --text: #e2e8f0;
+      --muted: #718096;
+      --green: #48bb78;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .container { max-width: 680px; width: 100%; }
+    .badge {
+      display: inline-block;
+      background: rgba(124,106,247,0.15);
+      border: 1px solid rgba(124,106,247,0.4);
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 1.25rem;
+    }
+    h1 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+      background: linear-gradient(135deg, #e2e8f0 0%, #a78bfa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .sub {
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.6;
+      margin-bottom: 2.5rem;
+    }
+    .dl-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.75rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+    .dl-left { display: flex; align-items: center; gap: 1rem; }
+    .dl-icon {
+      width: 48px; height: 48px;
+      background: rgba(124,106,247,0.15);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    .dl-info .dl-name { font-weight: 700; font-size: 1.05rem; }
+    .dl-info .dl-meta { color: var(--muted); font-size: 0.85rem; margin-top: 2px; }
+    .btn-dl {
+      background: var(--accent);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 10px 24px;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: opacity 0.15s, transform 0.15s;
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-dl:hover { opacity: 0.85; transform: translateY(-1px); }
+    .features { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 2rem; }
+    .feat {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.85rem 1rem;
+    }
+    .feat-name { font-weight: 600; font-size: 0.9rem; margin-bottom: 2px; }
+    .feat-desc { color: var(--muted); font-size: 0.8rem; line-height: 1.4; }
+    .code-block {
+      background: #0b0d17;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      font-family: 'Fira Code', 'Cascadia Code', monospace;
+      font-size: 0.82rem;
+      color: var(--accent2);
+      overflow-x: auto;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+    .footer {
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .footer a { color: var(--accent2); text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+    @media (max-width: 540px) {
+      .features { grid-template-columns: 1fr; }
+      .dl-card { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="badge">Pharos Agent Center Skill</div>
+
+    <h1>PMR</h1>
+    <p class="sub">
+      <strong style="color:var(--accent2)">Prediction Market Research</strong> — an AI agent skill for discovering, querying,
+      analyzing, and acting on on-chain prediction markets on Pharos. Built for the
+      <a href="https://silken-muskox-24e.notion.site/pharos-agent-center-skill-builder-campaign" style="color:var(--accent2)">Pharos Agent Center Skill Builder Campaign</a>.
+    </p>
+
+    <!-- Download card -->
+    <div class="dl-card">
+      <div class="dl-left">
+        <div class="dl-icon">📦</div>
+        <div class="dl-info">
+          <div class="dl-name">PMR Skill Package</div>
+          <div class="dl-meta">ZIP · ~18 KB · MIT-0 License</div>
+        </div>
+      </div>
+      <a class="btn-dl" href="PMR.zip" download>
+        ⬇ Download
+      </a>
+    </div>
+
+    <!-- Capabilities grid -->
+    <div class="features">
+      <div class="feat">
+        <div class="feat-name">🔍 Discover</div>
+        <div class="feat-desc">List &amp; browse live prediction markets by category, status, or keyword</div>
+      </div>
+      <div class="feat">
+        <div class="feat-name">📊 Query</div>
+        <div class="feat-desc">Read live prices, liquidity, volume, holders, and resolution state</div>
+      </div>
+      <div class="feat">
+        <div class="feat-name">💼 Positions</div>
+        <div class="feat-desc">Track wallet positions across markets, compute PnL, find claimable winnings</div>
+      </div>
+      <div class="feat">
+        <div class="feat-name">📈 Analyze</div>
+        <div class="feat-desc">Probability trend, liquidity profile (turnover band), holder HHI analysis</div>
+      </div>
+      <div class="feat">
+        <div class="feat-name">📝 Report</div>
+        <div class="feat-desc">Generate a structured markdown research report with Overview, Trend, Risks, Verdict</div>
+      </div>
+      <div class="feat">
+        <div class="feat-name">⚙️ Execute</div>
+        <div class="feat-desc">Buy / sell / claim — gated by private-key + network + balance pre-checks</div>
+      </div>
+    </div>
+
+    <!-- File tree -->
+    <div class="code-block">
+      PMR/<br>
+      ├── SKILL.md<br>
+      ├── README.md<br>
+      ├── LICENSE<br>
+      ├── assets/<br>
+      │   ├── networks.json<br>
+      │   ├── markets.json<br>
+      │   └── abi/MarketView.json<br>
+      ├── references/<br>
+      │   ├── discovery.md<br>
+      │   ├── query.md<br>
+      │   ├── positions.md<br>
+      │   ├── analysis.md<br>
+      │   ├── report.md<br>
+      │   └── execute.md<br>
+      └── examples/<br>
+          └── example-prompts.md
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <span>Built by <strong>Donyemiight</strong> for the Pharos Agent Center Skill Builder Campaign</span>
+      <a href="https://github.com/Donyemiight/PMR">GitHub →</a>
+    </div>
+
+  </div>
+</body>
+</html>
