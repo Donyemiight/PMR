@@ -1,19 +1,6 @@
 {
   "networks": [
     {
-      "name": "atlantic-testnet",
-      "rpcUrl": "https://atlantic.dplabs-internal.com",
-      "chainId": 688689,
-      "explorerUrl": "https://atlantic.pharosscan.xyz/",
-      "explorerApiUrl": "https://api.socialscan.io/pharos-atlantic-testnet",
-      "nativeToken": "PHRS",
-      "pmr": {
-        "marketRegistry": "0x0000000000000000000000000000000000000000",
-        "outcomeToken": "0x0000000000000000000000000000000000000000",
-        "aggregatorUrl": "https://api.pmr-pharos.example/v1"
-      }
-    },
-    {
       "name": "mainnet",
       "rpcUrl": "https://rpc.pharos.xyz",
       "chainId": 1672,
@@ -25,7 +12,20 @@
         "outcomeToken": "0x0000000000000000000000000000000000000000",
         "aggregatorUrl": "https://api.pmr-pharos.example/v1"
       }
+    },
+    {
+      "name": "atlantic-testnet",
+      "rpcUrl": "https://atlantic.dplabs-internal.com",
+      "chainId": 688689,
+      "explorerUrl": "https://atlantic.pharosscan.xyz/",
+      "explorerApiUrl": "https://api.socialscan.io/pharos-atlantic-testnet",
+      "nativeToken": "PHRS",
+      "pmr": {
+        "marketRegistry": "0x0000000000000000000000000000000000000000",
+        "outcomeToken": "0x0000000000000000000000000000000000000000",
+        "aggregatorUrl": "https://api.pmr-pharos.example/v1"
+      }
     }
   ],
-  "defaultNetwork": "atlantic-testnet"
+  "defaultNetwork": "mainnet"
 }
