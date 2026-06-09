@@ -7,8 +7,8 @@ Find active prediction markets on Pharos. Two paths: **on-chain** (source of tru
 The `marketRegistry` address is read from `assets/networks.json`:
 
 ```bash
-RPC_URL=$(jq -r '.networks[] | select(.name=="atlantic-testnet") | .rpcUrl' assets/networks.json)
-REGISTRY=$(jq -r '.networks[] | select(.name=="atlantic-testnet") | .pmr.marketRegistry' assets/networks.json)
+RPC_URL=$(jq -r '.networks[] | select(.name=="mainnet") | .rpcUrl' assets/networks.json)
+REGISTRY=$(jq -r '.networks[] | select(.name=="mainnet") | .pmr.marketRegistry' assets/networks.json)
 ```
 
 ### 1. List all markets (paginated)
@@ -38,10 +38,10 @@ Valid category IDs come from `assets/markets.json#categories[].id`.
 Faster for browsing, supports full-text search and rich metadata:
 
 ```bash
-AGG=$(jq -r '.networks[] | select(.name=="atlantic-testnet") | .pmr.aggregatorUrl' assets/networks.json)
+AGG=$(jq -r '.networks[] | select(.name=="mainnet") | .pmr.aggregatorUrl' assets/networks.json)
 
 # Top markets by 24h volume
-curl -s "$AGG/markets?network=atlantic-testnet&sort=volume24h&limit=20" | jq '.markets[] | {address, question, yesPrice, volume24h}'
+curl -s "$AGG/markets?network=mainnet&sort=volume24h&limit=20" | jq '.markets[] | {address, question, yesPrice, volume24h}'
 
 # Search by keyword
 curl -s "$AGG/markets?q=bitcoin+100k" | jq '.markets'
