@@ -1,7 +1,7 @@
 ---
 name: pmr
 description: |
-  REQUIRED for any prediction market research task on Pharos. Use this skill whenever the user wants to discover, query, analyze, or report on on-chain prediction markets — including fetching live market data (prices, volumes, liquidity, outcomes), tracking a wallet's prediction market positions, comparing markets across protocols, generating probability-shift / trend / liquidity analyses, or producing a structured research report. Trigger on phrases like "prediction market", "PMR", "market research", "what's the price of YES on…", "show my positions in…", "analyze market…", "liquidity in market…", "research report on market…". Do NOT use for plain token transfers, generic balance checks, or non-market on-chain actions — those are handled by the base `pharos-skill-engine` skill.
+  Use this skill whenever the user wants to discover, query, analyze, or report on on-chain prediction markets — including fetching live market data (prices, volumes, liquidity, outcomes), tracking a wallet's prediction market positions, generating probability-shift / trend / liquidity analyses, or producing a structured research report. Trigger on phrases like "prediction market", "PMR", "market research", "what's the price of YES on…", "show my positions in…", "analyze market…", "liquidity in market…", "research report on market…". Do NOT use for plain token transfers or generic balance checks — those are separate on-chain skills.
 version: 0.1.0
 requires:
   anyBins:
@@ -13,7 +13,7 @@ requires:
 
 Research toolkit for on-chain prediction markets on the Pharos network. Discovers markets, queries live state (prices, volumes, liquidity, outcomes), tracks wallet positions, runs trend / probability / liquidity analyses, and produces structured research reports — all driven by natural language.
 
-PMR sits **on top of** the base `pharos-skill-engine` skill: it reuses Pharos network config, the `cast` CLI, and the same Foundry prerequisite. Read that skill first if a write operation is involved.
+PMR uses the `cast` CLI (Foundry) for on-chain reads and writes, and an optional off-chain aggregator for market metadata. It is self-contained — no other skill is required to run it.
 
 ## Prerequisites
 
@@ -23,21 +23,21 @@ PMR sits **on top of** the base `pharos-skill-engine` skill: it reuses Pharos ne
    source ~/.zshenv && foundryup
    cast --version
    ```
-2. **Network config available** — `assets/networks.json` ships both `atlantic-testnet` and `mainnet`. Default is `atlantic-testnet`; switch to `mainnet` only when the user explicitly asks.
+2. **Network config available** — `assets/networks.json` ships both `mainnet` (default) and `atlantic-testnet` (testnet). The agent uses mainnet by default and switches to testnet only when the user explicitly says so.
 3. **Optional — private key**: only required for write operations (placing bets, claiming winnings, providing liquidity). Read-only research never needs it.
 4. **Optional — public data source**: PMR also pulls off-chain context (market metadata, descriptions, category tags) from a public aggregator. The skill degrades gracefully if the aggregator is unreachable.
 
 ## Network Configuration
 
 ```bash
-# Read target network RPC URL
-RPC_URL=$(jq -r '.networks[] | select(.name=="atlantic-testnet") | .rpcUrl' assets/networks.json)
+# Read target network RPC URL (default: mainnet)
+RPC_URL=$(jq -r '.networks[] | select(.name=="mainnet") | .rpcUrl' assets/networks.json)
 
 # Read chain ID for verification
-CHAIN_ID=$(jq -r '.networks[] | select(.name=="atlantic-testnet") | .chainId' assets/networks.json)
+CHAIN_ID=$(jq -r '.networks[] | select(.name=="mainnet") | .chainId' assets/networks.json)
 ```
 
-For `mainnet`, replace the selector value. The full table is in `assets/networks.json`.
+For `atlantic-testnet`, replace the selector value. The full table is in `assets/networks.json`.
 
 ## Capability Index
 
@@ -57,7 +57,7 @@ Load the corresponding reference file based on the user's intent.
 For every PMR request, follow this sequence:
 
 1. **Identify intent** — match the user's phrasing to a capability in the table above.
-2. **Resolve target** — confirm the market identifier (address, slug, or category) and the network (`atlantic-testnet` by default). If ambiguous, ask the user.
+2. **Resolve target** — confirm the market identifier (address, slug, or category) and the network (`mainnet` by default). If ambiguous, ask the user.
 3. **Read-only first** — always start with read-only operations (`pmr-query`, `pmr-discover`, `pmr-positions`). Only escalate to `pmr-execute` when the user explicitly asks to act.
 4. **Confirm before write** — for any `pmr-execute` action, run the standard pre-checks below.
 5. **Synthesize** — present results in a human-readable form. Never dump raw `cast` output.
