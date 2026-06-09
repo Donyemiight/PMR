@@ -23,7 +23,7 @@ The contract exposes a standard `MarketView` ABI (see `assets/abi/MarketView.jso
 
 ```bash
 MARKET=0xabc...
-RPC_URL=$(jq -r '.networks[] | select(.name=="atlantic-testnet") | .rpcUrl' assets/networks.json)
+RPC_URL=$(jq -r '.networks[] | select(.name=="mainnet") | .rpcUrl' assets/networks.json)
 
 # Metadata
 NAME=$(cast call $MARKET "name()(string)" --rpc-url $RPC_URL)
