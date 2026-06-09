@@ -37,8 +37,8 @@ For full PnL, also need `costBasis`. If the user has tx history, sum each `Buy` 
 ## Scan Across All Markets (When Market Not Specified)
 
 ```bash
-RPC_URL=$(jq -r '.networks[] | select(.name=="atlantic-testnet") | .rpcUrl' assets/networks.json)
-REGISTRY=$(jq -r '.networks[] | select(.name=="atlantic-testnet") | .pmr.marketRegistry' assets/networks.json)
+RPC_URL=$(jq -r '.networks[] | select(.name=="mainnet") | .rpcUrl' assets/networks.json)
+REGISTRY=$(jq -r '.networks[] | select(.name=="mainnet") | .pmr.marketRegistry' assets/networks.json)
 TOTAL=$(cast call $REGISTRY "allMarketsLength()(uint256)" --rpc-url $RPC_URL)
 
 for i in $(seq 0 $((TOTAL-1))); do
